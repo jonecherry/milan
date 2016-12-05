@@ -5,7 +5,7 @@
 			{{ trans('user.your_account') }} <span class="caret"></span>
 		</a>
 	<ul class="dropdown-menu" role="menu" >
-<!--		--><?php //$menu=\Menu::top(true);?>
+		<?php $menu=\Menu::top(true);?>
 		{{--@foreach ($menu as $item)--}}
 		    {{--<li class="{{isset($item['class'])?$item['class']:''}} {{ Utility::active($item['route']) }}" >--}}
 				{{--<a href='{{$item['route']}}'>--}}
@@ -21,12 +21,28 @@
 			{{--@if(isset($item['divider']))<li class="divider"></li>@endif--}}
 		{{--@endforeach--}}
 			{{--<li class="divider"></li>--}}
+		@if (!auth()->check())
 			<li>
 				<a href="/login" >
 					<span class="divier">Sign in</span>
 				</a>
 			</li>
+		@endif
 		@if (auth()->check())
+			@foreach ($menu as $item)
+				<li class="{{isset($item['class'])?$item['class']:''}} {{ Utility::active($item['route']) }}" >
+					<a href='{{$item['route']}}'>
+						@if (isset($item['icon']))
+							<span class="{{$item['icon']}}"></span>
+						@endif
+						{{$item['text']}}
+						@if (isset($item['cont'])&&$item['cont']>0)
+							<span class="badge">{{$item['cont']}}</span>
+						@endif
+					</a>
+				</li>
+				@if(isset($item['divider']))<li class="divider"></li>@endif
+			@endforeach
 			<li class="divider"></li>
 			<li>
 				<form action="/logout" method="POST">
