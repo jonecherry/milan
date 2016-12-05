@@ -25,7 +25,9 @@ Route::get('verification/{token}', 'UserController@accountVerification');
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 // 后台管理
-Route::get('admin','UserController@login');
+Route::get('/admin',function (){
+    return 'hello world';
+});
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');

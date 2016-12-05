@@ -1,8 +1,8 @@
 <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-			<span class="glyphicon glyphicon-user  @if(Auth::check()){{ 'user-photo' }}@endif"
+			<span class="fui fui-question-circle  @if(Auth::check()){{ 'user-photo' }}@endif"
 				  style="@if(Auth::check()) {{ "background-image:url('".(\Auth::user()->pic_url?\Auth::user()->pic_url:'img/no-avatar.png')."');" }} @endif"></span>
-			{{ trans('user.your_account') }} <span class="caret"></span>
+			<span class="caret"></span>
 		</a>
 	<ul class="dropdown-menu" role="menu" >
 		<?php $menu=\Menu::top(true);?>
@@ -24,7 +24,7 @@
 		@if (!auth()->check())
 			<li>
 				<a href="/login" >
-					<span class="divier">Sign in</span>
+					<span class="divier">登入</span>
 				</a>
 			</li>
 		@endif

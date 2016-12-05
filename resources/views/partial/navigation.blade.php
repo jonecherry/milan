@@ -23,14 +23,15 @@
 				</a>
 			</div>
 		</div>
+
 		<div id="navbar" class="navbar-collapse collapse">
+
 			<ul class="nav navbar-nav">
 
-				@include('user.partial.menu_top')
 
 				{{--<li class="dropdown">--}}
 					{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
-						{{--<span class="fui fui-heart"></span>{{ trans('store.wish_list') }}--}}
+						{{--<span class="fui fui-heart">窗帘</span>--}}
 						{{--<span class="caret"></span>--}}
 					{{--</a>--}}
 					{{--<ul class="dropdown-menu" role="menu">--}}
@@ -38,6 +39,48 @@
 						{{--<li><a href="{{ route('orders.show_list_directory') }}">{{ trans('store.your_wish_lists') }}</a></li>--}}
 					{{--</ul>--}}
 				{{--</li>--}}
+				{{--<li class="dropdown">--}}
+					{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
+						{{--<span class="fui fui-heart">壁纸</span>--}}
+						{{--<span class="caret"></span>--}}
+					{{--</a>--}}
+					{{--<ul class="dropdown-menu" role="menu">--}}
+						{{--<li><a href="{{ route('orders.show_wish_list') }}">{{ trans('store.wish_list') }}</a></li>--}}
+						{{--<li><a href="{{ route('orders.show_list_directory') }}">{{ trans('store.your_wish_lists') }}</a></li>--}}
+					{{--</ul>--}}
+				{{--</li>--}}
+
+                <li >
+                    <a href="/contact" >
+                        <span class="fui fui-heart">我要装修</span>
+                        {{--<span class="caret"></span>--}}
+                    </a>
+                </li>
+                <li >
+                    <a href="/products?category=999" >
+                        <span class="fui fui-heart">窗帘</span>
+                        {{--<span class="caret"></span>--}}
+                    </a>
+                </li>
+                <li >
+                    <a href="/products?category=998" >
+                        <span class="fui fui-heart">米兰壁纸</span>
+                        {{--<span class="caret"></span>--}}
+                    </a>
+                </li>
+                <li >
+					<a href="/" >
+						<span class="fui fui-heart">米兰设计</span>
+						{{--<span class="caret"></span>--}}
+					</a>
+				</li>
+
+                {{--@include('partial.navigation_help')--}}
+                @include('user.partial.menu_top')
+
+
+
+
 
 				{{--<li class="dropdown">--}}
 					{{--<a href="#cart" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
@@ -85,44 +128,45 @@
                         {{--</ul>--}}
                     {{--@endif--}}
 				{{--</li>--}}
-				@if(Auth::user())
-					<li class="dropdown " id="push-notices" ng-controller="PushNoticesController"  ng-click="check()" ng-focus="check()">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<span class="badge badge-notifications ng-hide" ng-cloak  ng-show="push">[[push]]</span>
-							<span class="fui fui-chat"></span>{{ trans('globals.notices') }}
-							<span class="visible-xs-inline">
-								<span class="caret"></span>
-							</span>
-						</a>
-						<ul class="dropdown-menu notices" role="menu" ng-if="notices.length">
-							<li ng-repeat="notice in notices" class="[[notice.status]]">
-								<a href="[[getLink(notice)]]" ng-click="check(notice)">[[getDesc(notice)]]</a>
-							</li>
-							<li>{!! link_to('user/notices/list', trans('globals.all')) !!}</li>
-						</ul>
-					</li>
+				{{--@if(Auth::user())--}}
+					{{--<li class="dropdown " id="push-notices" ng-controller="PushNoticesController"  ng-click="check()" ng-focus="check()">--}}
+						{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
+							{{--<span class="badge badge-notifications ng-hide" ng-cloak  ng-show="push">[[push]]</span>--}}
+							{{--<span class="fui fui-chat"></span>{{ trans('globals.notices') }}--}}
+							{{--<span class="visible-xs-inline">--}}
+								{{--<span class="caret"></span>--}}
+							{{--</span>--}}
+						{{--</a>--}}
+						{{--<ul class="dropdown-menu notices" role="menu" ng-if="notices.length">--}}
+							{{--<li ng-repeat="notice in notices" class="[[notice.status]]">--}}
+								{{--<a href="[[getLink(notice)]]" ng-click="check(notice)">[[getDesc(notice)]]</a>--}}
+							{{--</li>--}}
+							{{--<li>{!! link_to('user/notices/list', trans('globals.all')) !!}</li>--}}
+						{{--</ul>--}}
+					{{--</li>--}}
 
-					@if (config('app.offering_user_points'))
-					<li>
-						<a href="{{ route('paypal.buy_points') }}" ng-controller = "PushUsersPoints" ng-init = "pusher()">
-							<span class="badge badge-points ng-hide" ng-cloak ng-show = "points" >[[ points | thousandSuffix ]]</span>
-							<span class="fui fui-radio-unchecked"></span>{{ trans('store.price') }}
-						</a>
-					</li>
-					@endif
-				@endif
+					{{--@if (config('app.offering_user_points'))--}}
+					{{--<li>--}}
+						{{--<a href="{{ route('paypal.buy_points') }}" ng-controller = "PushUsersPoints" ng-init = "pusher()">--}}
+							{{--<span class="badge badge-points ng-hide" ng-cloak ng-show = "points" >[[ points | thousandSuffix ]]</span>--}}
+							{{--<span class="fui fui-radio-unchecked"></span>{{ trans('store.price') }}--}}
+						{{--</a>--}}
+					{{--</li>--}}
+					{{--@endif--}}
+				{{--@endif--}}
 
-				@if (config('app.offering_free_products'))
-					<li>
-						<a href="{{ route('freeproducts.search') }}">
-							<span class="fui fui-star-2"></span>{{ trans('globals.products') }}
-							<span class="badge badge-freeproducts">{{ trans('globals.free') }}</span>
-						</a>
-					</li>
-				@endif
+				{{--@if (config('app.offering_free_products'))--}}
+					{{--<li>--}}
+						{{--<a href="{{ route('freeproducts.search') }}">--}}
+							{{--<span class="fui fui-star-2"></span>{{ trans('globals.products') }}--}}
+							{{--<span class="badge badge-freeproducts">{{ trans('globals.free') }}</span>--}}
+						{{--</a>--}}
+					{{--</li>--}}
+				{{--@endif--}}
+
 
 			</ul>
-			@include('partial.navigation_help')
+
 		</div>
 	</nav>
 
