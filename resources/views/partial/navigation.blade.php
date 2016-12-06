@@ -11,14 +11,14 @@
 				<a href="/home" class="navbar-brand">
 					@if($main_company['logo'])
 						<span class="navbar-brand-text">
-							<img src="{{$main_company['logo']}}" alt="">
+							<img src="/img/milan_brand.jpg" alt="">
 						</span>
 					@else
 						<span class="navbar-brand-text">{{ $main_company['name'] }}</span>
 					@endif
 
 					@if(isset($main_company['slogan']))
-						<span class="navbar-brand-slogan">{{$main_company['slogan']}}</span>
+						<span class="navbar-brand-slogan">品位 时尚 浪漫</span>
 					@endif
 				</a>
 			</div>
